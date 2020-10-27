@@ -6,7 +6,7 @@ export class MovieItem extends React.Component {
     render() {
         return (
             <div>
-
+                
                 <Card>
                     <Card.Header>{this.props.movie.Title}</Card.Header>
                     <Card.Body>
