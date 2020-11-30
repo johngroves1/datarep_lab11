@@ -79,6 +79,19 @@ app.get('/api/movies/:id', (req, res)=>{
     })
 })
 
+// New Http method for edit request
+app.put('/api/movies/:id', (req,res)=>{
+    console.log("Update movie: " + req.params.id);
+    console.log(req.body)
+
+    //Find record by ID and update it
+    MovieModel.findByIdAndUpdate(req.params.id, req.body, {new:true},
+         (err,data)=>{
+             res.send(data);
+         })
+})
+
+// Delete Request
 app.delete('/api/movies/:id',(req, res)=>{
     console.log("Delete Movie: "+ req.params.id);
 
