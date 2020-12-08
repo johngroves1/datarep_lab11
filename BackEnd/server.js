@@ -4,7 +4,7 @@ const port = 4000
 const cors = require('cors')
 const bodyParser = require("body-parser")
 const mongoose = require('mongoose');
-
+const path = require('path');
 
 // Read JSON data from the node server
 app.use(cors());
@@ -16,7 +16,8 @@ res.header("Access-Control-Allow-Headers",
 next();
 });
 
-
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
 
 
 // Parse application/x-www-form-urlencoded
@@ -114,6 +115,10 @@ app.post('/api/movies', (req, res)=>{
     })
 
     res.send('Item added')
+})
+
+app.get('*', (req,res)=>{
+    res.sendFile(path.join(__dirname + '/../build/index.html'));
 })
 
 app.listen(port, () => {
